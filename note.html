@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Note details | LeToG</title>
+    <meta name="description" content="Read the full note details, preview the document, reviews and comments on LeToG." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="global.css" />
+    <link rel="stylesheet" href="note.css" />
+    <link rel="stylesheet" href="responsive.css" />
+  </head>
+  <body data-page="note">
+    <div id="site-nav"></div>
+
+    <main class="container page-body">
+      <p><a class="btn-text" href="search.html">&larr; Back to results</a></p>
+
+      <div class="note-layout">
+        <div>
+          <header class="note-head">
+            <div>
+              <h1 id="noteTitle">Note</h1>
+              <p class="muted" id="noteDesc"></p>
+            </div>
+            <div class="note-actions">
+              <button class="bookmark-btn" type="button" id="saveTop" aria-pressed="false" aria-label="Save this note" style="position: static"></button>
+            </div>
+          </header>
+
+          <div class="author-row">
+            <span class="avatar" id="authorAvatar" aria-hidden="true"></span>
+            <span>By <strong id="authorName"></strong></span>
+            <button class="btn btn-secondary btn-sm" type="button" id="followBtn" aria-pressed="false">Follow</button>
+            <span class="muted small" id="noteStats"></span>
+          </div>
+
+          <div class="tag-row" id="noteTags" style="margin-bottom: 16px"></div>
+
+          <!-- Mock PDF preview -->
+          <section class="pdf-preview" aria-label="Document preview">
+            <div class="pdf-page" id="pdfPage"></div>
+            <div class="pdf-toolbar">
+              <button class="btn btn-secondary btn-sm" type="button" id="prevPage">Previous</button>
+              <span id="pageLabel">Page 1 / 3</span>
+              <button class="btn btn-secondary btn-sm" type="button" id="nextPage">Next</button>
+            </div>
+          </section>
+
+          <div class="detail-buttons">
+            <button class="btn btn-primary" type="button" id="downloadBtn">Download PDF</button>
+            <button class="btn btn-secondary" type="button" id="saveBtn" aria-pressed="false">Save</button>
+          </div>
+
+          <!-- Tabs -->
+          <div class="tabs" role="tablist" aria-label="Note information">
+            <button class="tab" type="button" role="tab" id="tab-desc" aria-controls="panel-desc" aria-selected="true">Description</button>
+            <button class="tab" type="button" role="tab" id="tab-reviews" aria-controls="panel-reviews" aria-selected="false">Reviews</button>
+            <button class="tab" type="button" role="tab" id="tab-comments" aria-controls="panel-comments" aria-selected="false">Comments</button>
+          </div>
+
+          <section class="tab-panel" id="panel-desc" role="tabpanel" aria-labelledby="tab-desc">
+            <p>
+              These notes cover everything about loops in Python. It includes for loops, while loops,
+              nested loops, break, continue and many practical examples with outputs.
+            </p>
+            <p class="muted small">Uploaded on 5 May 2026 &middot; 12 pages &middot; PDF</p>
+          </section>
+
+          <section class="tab-panel" id="panel-reviews" role="tabpanel" aria-labelledby="tab-reviews" hidden>
+            <p><strong>Rate these notes:</strong></p>
+            <div class="stars" id="rateStars" role="group" aria-label="Rate these notes">
+              <button class="star-btn" type="button" data-star="1" aria-label="1 star">★</button>
+              <button class="star-btn" type="button" data-star="2" aria-label="2 stars">★</button>
+              <button class="star-btn" type="button" data-star="3" aria-label="3 stars">★</button>
+              <button class="star-btn" type="button" data-star="4" aria-label="4 stars">★</button>
+              <button class="star-btn" type="button" data-star="5" aria-label="5 stars">★</button>
+            </div>
+            <div class="review">
+              <p><strong>Riya Sharma</strong> <span class="muted small">★ 5.0</span></p>
+              <p class="muted">Very clear explanations, the nested loop examples helped me a lot.</p>
+            </div>
+            <div class="review">
+              <p><strong>Dev Patel</strong> <span class="muted small">★ 4.0</span></p>
+              <p class="muted">Good notes. Would love a few more practice questions.</p>
+            </div>
+          </section>
+
+          <section class="tab-panel" id="panel-comments" role="tabpanel" aria-labelledby="tab-comments" hidden>
+            <div class="comment">
+              <span class="avatar" aria-hidden="true">NG</span>
+              <div>
+                <p><strong>Neha Gupta</strong></p>
+                <p class="muted">Thanks for sharing! Saved for my exam prep.</p>
+              </div>
+            </div>
+            <div class="comment">
+              <span class="avatar" aria-hidden="true">SK</span>
+              <div>
+                <p><strong>Sahil Khan</strong></p>
+                <p class="muted">The while loop section is gold.</p>
+              </div>
+            </div>
+            <form id="commentForm">
+              <label class="form-label" for="commentText">Add a comment</label>
+              <textarea id="commentText" placeholder="Write a comment..."></textarea>
+              <button class="btn btn-primary btn-sm" type="submit">Post comment</button>
+            </form>
+          </section>
+        </div>
+
+        <!-- Side: related notes -->
+        <aside class="side-card">
+          <h3>Related notes</h3>
+          <div id="relatedList"></div>
+        </aside>
+      </div>
+    </main>
+<div id="site-bottom-nav"></div>
+
+    <script src="global.js"></script>
+    <script src="note.js"></script>
+  </body>
+</html>

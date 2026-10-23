@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="global.css" />
+<link rel="stylesheet" href="navigation-pages.css" />
+<link rel="stylesheet" href="responsive.css" />
+</head>
+<title>Top Users | LeToG</title>
+<meta name="description" content="Meet the top LeToG contributors sharing study notes." />
+</head>
+<body data-page="top-users">
+<div id="site-nav"></div>
+<main class="container">
+<header class="info-hero"><h1>Top Contributors</h1><p>Meet learners who help the community by sharing useful notes and learning resources.</p></header>
+<section class="nav-user-list" id="topUsers" aria-label="Top contributors"></section>
+</main>
+<div id="site-bottom-nav"></div>
+<script src="global.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="supabase-client.js"></script><script>document.addEventListener("DOMContentLoaded",async function(){var slot=document.getElementById("topUsers");if(!window.leToGSupabase){slot.textContent="Supabase is not configured.";return;}var r=await leToGSupabase.from("study_notes").select("user_id");if(r.error){slot.textContent="Could not load contributors: "+r.error.message;return;}var counts={};(r.data||[]).forEach(function(n){counts[n.user_id]=(counts[n.user_id]||0)+1;});var ids=Object.keys(counts);if(!ids.length){slot.innerHTML="<p class=muted>No contributors yet. Upload a study note to appear here.</p>";return;}var p=await leToGSupabase.from("profiles").select("id,display_name").in("id",ids);var names={};(p.data||[]).forEach(function(x){names[x.id]=x.display_name||"LeToG learner";});slot.innerHTML=ids.sort(function(a,b){return counts[b]-counts[a];}).map(function(id,i){var name=names[id]||"LeToG learner";var safe=name.replace(/[&<>\"']/g,function(c){return ({"&":"&amp;","<":"&lt;",">":"&gt;",'\"':"&quot;","'":"&#39;"})[c];});return '<article class="nav-user"><span class="rank">#'+(i+1)+'</span><span class="avatar avatar-lg">'+safe.split(/\s+/).map(function(x){return x[0]||"";}).slice(0,2).join("")+'</span><div class="user-info"><strong>'+safe+'</strong><span>'+counts[id]+' uploaded notes</span></div></article>';}).join("");});</script>
+</body>
+</html>

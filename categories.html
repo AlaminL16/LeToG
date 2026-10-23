@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="global.css" />
+<link rel="stylesheet" href="navigation-pages.css" />
+<link rel="stylesheet" href="responsive.css" />
+</head>
+<title>Categories | LeToG</title>
+<meta name="description" content="Explore LeToG study-note categories." />
+</head>
+<body data-page="categories">
+<div id="site-nav"></div>
+<main class="container">
+<header class="info-hero"><h1>Explore Categories</h1><p>Find study notes by subject and interest. Choose a category to see matching notes.</p></header>
+<section class="nav-page-grid" id="allCategories" aria-label="All categories"></section>
+</main>
+<div id="site-bottom-nav"></div>
+<script src="global.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){var el=document.getElementById("allCategories");el.innerHTML=CATEGORIES.filter(function(c){return c.name!=="More";}).map(function(c){return '<a class="nav-category" href="search.html?q='+encodeURIComponent(c.name)+'"><span class="cat-icon" aria-hidden="true">'+(ICONS[c.icon]||ICONS.star)+'</span><strong>'+c.name+'</strong><span>'+c.notes+'</span></a>';}).join('')+'<a class="nav-category" href="search.html"><span class="cat-icon" aria-hidden="true">'+ICONS.dots+'</span><strong>All Notes</strong><span>Browse every subject</span></a>';});</script>
+</body>
+</html>

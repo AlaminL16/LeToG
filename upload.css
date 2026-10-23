@@ -1,0 +1,137 @@
+/* LeToG – upload notes page */
+
+.upload-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.steps {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+}
+
+.steps li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  color: var(--secondary);
+}
+
+.steps li.active {
+  background: var(--light-blue);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.steps .num {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.steps li.active .num {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.dropzone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--background);
+  text-align: center;
+  padding: 48px 20px;
+}
+
+.dropzone.dragover {
+  border-color: var(--primary);
+  background: var(--light-blue);
+}
+
+.dropzone .cloud {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: var(--light-blue);
+  color: var(--primary);
+}
+
+.dropzone .or {
+  color: var(--secondary);
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.file-chip {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+  font-size: 14px;
+}
+
+.file-chip.show {
+  display: flex;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 18px;
+}
+
+.form-grid .full {
+  grid-column: 1 / -1;
+}
+
+.step-panel[hidden] {
+  display: none;
+}
+
+.step-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.preview-box {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+}
+
+.preview-box dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  gap: 8px 12px;
+  font-size: 14px;
+}
+
+.preview-box dt {
+  color: var(--secondary);
+}
+
+.preview-box dd {
+  margin: 0;
+}

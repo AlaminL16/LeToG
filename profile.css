@@ -1,0 +1,216 @@
+/* LeToG – profile, bookmarks and settings pages */
+
+.profile-header {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.profile-header h1 {
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+.profile-role {
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 0 6px;
+}
+
+.profile-bio {
+  color: var(--secondary);
+  font-size: 14px;
+  margin: 0;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 20px 0 24px;
+}
+
+.stat {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  text-align: center;
+}
+
+.stat strong {
+  display: block;
+  font-size: 22px;
+}
+
+.stat span {
+  font-size: 13px;
+  color: var(--secondary);
+}
+
+.profile-tabs {
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.profile-tabs a {
+  padding: 10px 14px;
+  color: var(--secondary);
+  font-size: 15px;
+  border-bottom: 2px solid transparent;
+}
+
+.profile-tabs a:hover,
+.profile-tabs a.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  text-decoration: none;
+}
+
+.my-note-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Settings ------------------------------------------------------------- */
+.settings-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.settings-nav {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 10px;
+  position: sticky;
+  top: calc(var(--nav-height) + 16px);
+}
+
+.settings-nav a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.settings-nav a:hover {
+  background: var(--light-blue);
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.settings-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  margin-bottom: 20px;
+}
+
+.settings-card h2 {
+  font-size: 19px;
+}
+
+.switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.switch-row:last-child {
+  border-bottom: 0;
+}
+
+.danger-zone {
+  border-color: #fecaca;
+}
+
+.danger-zone h2 {
+  color: var(--error);
+}
+
+.btn-danger {
+  background: var(--error);
+  color: var(--white);
+}
+
+/* Interests / onboarding ----------------------------------------------- */
+.interest-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.interest-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 24px 0;
+}
+
+.interest-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  min-height: 56px;
+}
+
+.interest-card svg {
+  width: 20px;
+  height: 20px;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.interest-card[aria-pressed="true"] {
+  border-color: var(--primary);
+  background: var(--light-blue);
+  color: var(--primary);
+}
+
+.interest-card .mark {
+  margin-left: auto;
+  font-size: 14px;
+  color: var(--primary);
+  visibility: hidden;
+}
+
+.interest-card[aria-pressed="true"] .mark {
+  visibility: visible;
+}
+
+
+/* Supabase-backed profile editor */
+.profile-avatar-image { object-fit: cover; border-radius: 50%; display: inline-block; }
+.profile-avatar-image[hidden] { display: none; }
+.profile-edit-card { margin-top: 28px; }
+.profile-edit-card form { max-width: 720px; }
+.profile-edit-message { min-height: 1.4em; margin: 8px 0 14px; font-size: 14px; }
+.profile-edit-message.is-error { color: #dc2626; }
+.profile-edit-message.is-success { color: #16a34a; }

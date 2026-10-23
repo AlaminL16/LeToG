@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Saved Notes | LeToG</title>
+    <meta name="description" content="All the LeToG notes you bookmarked, saved in one place for later study." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="global.css" />
+    <link rel="stylesheet" href="profile.css" />
+    <link rel="stylesheet" href="responsive.css" />
+  </head>
+  <body data-page="saved">
+    <div id="site-nav"></div>
+
+    <main class="container page-body">
+      <div class="section-head">
+        <h1>Saved Notes</h1>
+        <a class="btn-text" href="search.html">Find more notes</a>
+      </div>
+
+      <div class="grid grid-3" id="savedList"></div>
+    </main>
+<div id="site-bottom-nav"></div>
+
+    <script src="global.js"></script>
+    <script>
+      // Bookmarks page: render the notes saved in localStorage
+      document.addEventListener("DOMContentLoaded", function () {
+        var list = document.getElementById("savedList");
+
+        function render() {
+          var ids = getBookmarks();
+          var saved = NOTES.filter(function (note) {
+            return ids.indexOf(note.id) !== -1;
+          });
+
+          if (!saved.length) {
+            list.className = "";
+            list.innerHTML =
+              '<div class="empty-state"><h3>No saved notes yet</h3>' +
+              '<p class="muted">Save useful notes and find them here later.</p>' +
+              '<a class="btn btn-primary" href="search.html">Explore Notes</a></div>';
+            return;
+          }
+
+          list.className = "grid grid-3";
+          list.innerHTML = saved.map(noteCardHtml).join("");
+        }
+
+        document.addEventListener("letog:bookmarks-changed", render);
+        render();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edit post — LeToG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="global.css"><link rel="stylesheet" href="responsive.css"><link rel="stylesheet" href="edit-post.css">
+</head>
+<body data-page="edit-post">
+<div id="site-nav"></div>
+<main class="container edit-page-wrap">
+  <a id="backLink" class="edit-back-link" href="home.html">← Back</a>
+  <section class="card edit-post-card">
+    <h1 id="editHeading">Edit post</h1>
+    <p class="muted">Update the editable fields below. Locked fields cannot be changed here.</p>
+    <p id="editStatus" class="edit-status" role="status" aria-live="polite"></p>
+    <form id="editPostForm" class="edit-post-form" hidden>
+      <label for="postTitle">Title</label><input id="postTitle" maxlength="160" required>
+      <label id="subjectLabel" for="postSubject">Subject / category <span class="locked-label">Not editable</span></label><input id="postSubject" disabled>
+      <label id="difficultyLabel" for="postDifficulty">Difficulty <span class="locked-label">Not editable</span></label><input id="postDifficulty" disabled>
+      <label for="postDescription" id="descriptionLabel">Description</label><textarea id="postDescription" rows="7" maxlength="10000"></textarea>
+      <label for="postTags" id="tagsLabel">Tags <span class="muted small">Separate with commas</span></label><input id="postTags" placeholder="e.g. quantum mechanics, notes">
+      <label for="postAttachment">Uploaded file <span class="locked-label">Not editable</span></label><input id="postAttachment" disabled>
+      <label for="postOwner">Uploader <span class="locked-label">Not editable</span></label><input id="postOwner" disabled>
+      <div class="edit-post-actions"><button id="savePostButton" class="btn btn-primary" type="submit">Save changes</button><a id="cancelEditLink" class="btn btn-secondary" href="home.html">Cancel</a></div>
+    </form>
+  </section>
+</main>
+<div id="site-bottom-nav"></div>
+<script src="global.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="supabase-client.js"></script><script src="edit-post.js"></script>
+</body></html>

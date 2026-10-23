@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Choose your interests | LeToG</title>
+    <meta
+      name="description"
+      content="Pick the subjects you care about so LeToG can personalise the notes you see."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="global.css" />
+    <link rel="stylesheet" href="profile.css" />
+    <link rel="stylesheet" href="responsive.css" />
+  </head>
+  <body data-page="interests">
+    <div id="site-nav"></div>
+
+    <main class="container page-body">
+      <div class="interest-wrap">
+        <div class="section-head">
+          <div>
+            <h1>What are you interested in?</h1>
+            <p class="muted">This helps us personalize your experience.</p>
+          </div>
+          <a class="btn-text" href="home.html">Skip for now</a>
+        </div>
+
+        <div class="interest-grid" id="interestGrid"></div>
+
+        <p class="muted small" id="interestCount">No interests selected yet.</p>
+        <button class="btn btn-primary btn-block" type="button" id="continueBtn">Continue</button>
+      </div>
+    </main>
+<div id="site-bottom-nav"></div>
+
+    <script src="global.js"></script>
+    <script src="interests.js"></script>
+  </body>
+</html>

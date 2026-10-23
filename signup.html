@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign up to LeToG | Learn. Share. Grow.</title>
+    <meta
+      name="description"
+      content="Create your free LeToG account to learn from quality notes, share what you know, and grow with thousands of students and experts."
+    />
+    <!-- Fonts: Poppins for headings/UI, Inter for body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        try {
+          var theme = JSON.parse(localStorage.getItem("letog_theme")) || "light";
+          document.documentElement.setAttribute("data-theme", theme === "dark" ? "dark" : "light");
+        } catch (error) { document.documentElement.setAttribute("data-theme", "light"); }
+      })();
+    </script>
+    <link rel="stylesheet" href="auth.css" />
+  </head>
+  <body>
+    <div class="page">
+      <!-- ============ LEFT: brand / benefits ============ -->
+      <aside class="panel">
+        <a class="logo" href="home.html">
+          <span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 5.5c3.1-.9 6-.4 8.5 1.5v12c-2.5-1.9-5.4-2.4-8.5-1.5z"/><path d="M20.5 5.5c-3.1-.9-6-.4-8.5 1.5v12c2.5-1.9 5.4-2.4 8.5-1.5z"/><path d="M12 7v12"/></svg></span>
+          <span class="logo-text">
+            <strong>LeToG</strong>
+            <small>Learn. Share. Grow.</small>
+          </span>
+        </a>
+
+        <div class="panel-body">
+          <h1 class="panel-title">
+            Create your<br />
+            <span class="accent">LeToG</span> account
+          </h1>
+          <p class="panel-sub">
+            Join thousands of learners and share knowledge with the world.
+          </p>
+
+          <!-- Benefit list -->
+          <ul class="benefits">
+            <li>
+              <span class="benefit-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 6h7v13H4z" /><path d="M13 6h7v13h-7z" />
+                </svg>
+              </span>
+              <div>
+                <h2>Learn from quality notes</h2>
+                <p>Access notes shared by students and experts.</p>
+              </div>
+            </li>
+            <li>
+              <span class="benefit-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 19V5" /><path d="M5 12l7-7 7 7" />
+                </svg>
+              </span>
+              <div>
+                <h2>Share what you know</h2>
+                <p>Upload your notes and help others learn.</p>
+              </div>
+            </li>
+            <li>
+              <span class="benefit-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z" /><path d="M9 12l2 2 4-4" />
+                </svg>
+              </span>
+              <div>
+                <h2>Safe &amp; Secure</h2>
+                <p>Your data is protected with industry-standard security.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Decorative illustration (hidden on small screens) -->
+        <img
+          class="panel-art"
+          src="study-illustration.png"
+          alt=""
+          aria-hidden="true"
+        />
+      </aside>
+
+      <!-- ============ RIGHT: signup form ============ -->
+      <main class="form-side">
+        <p class="top-link">
+          Already have an account? <a href="login.html">Log in</a>
+        </p>
+
+        <div class="form-wrap">
+          <header class="form-head">
+            <h2>Sign up to LeToG</h2>
+            <p>It only takes a minute.</p>
+          </header>
+
+          <!-- Social signup -->
+          <button type="button" class="btn btn-google" id="googleBtn">
+            <svg class="g-icon" viewBox="0 0 18 18" aria-hidden="true">
+              <path fill="#4285F4" d="M17.6 9.2c0-.6-.1-1.2-.2-1.7H9v3.3h4.8a4.1 4.1 0 0 1-1.8 2.7v2.2h2.9c1.7-1.6 2.7-3.9 2.7-6.5z"/>
+              <path fill="#34A853" d="M9 18c2.4 0 4.5-.8 6-2.3l-2.9-2.2c-.8.6-1.9.9-3.1.9-2.4 0-4.4-1.6-5.1-3.8H.9v2.3A9 9 0 0 0 9 18z"/>
+              <path fill="#FBBC05" d="M3.9 10.6a5.4 5.4 0 0 1 0-3.4V4.9H.9a9 9 0 0 0 0 8.1l3-2.4z"/>
+              <path fill="#EA4335" d="M9 3.6c1.3 0 2.5.5 3.4 1.3L15 2.3A9 9 0 0 0 .9 4.9l3 2.3C4.6 5.1 6.6 3.6 9 3.6z"/>
+            </svg>
+            Continue with Google
+          </button>
+
+          <div class="divider"><span>or sign up with email</span></div>
+
+          <!-- Signup form -->
+          <form id="signupForm" novalidate>
+            <div class="row">
+              <div class="field">
+                <label for="firstName">First name</label>
+                <input id="firstName" name="firstName" type="text" placeholder="Enter first name" autocomplete="given-name" />
+                <p class="error" id="firstNameError"></p>
+              </div>
+              <div class="field">
+                <label for="lastName">Last name</label>
+                <input id="lastName" name="lastName" type="text" placeholder="Enter last name" autocomplete="family-name" />
+                <p class="error" id="lastNameError"></p>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="email">Email address</label>
+              <input id="email" name="email" type="email" placeholder="Enter your email" autocomplete="email" />
+              <p class="error" id="emailError"></p>
+            </div>
+
+            <div class="field">
+              <label for="password">Password</label>
+              <div class="input-icon">
+                <input id="password" name="password" type="password" placeholder="Create a password" autocomplete="new-password" />
+                <button type="button" class="eye" data-target="password" aria-label="Show password">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M1.5 12S5 5.5 12 5.5 22.5 12 22.5 12 19 18.5 12 18.5 1.5 12 1.5 12z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </button>
+              </div>
+              <p class="error" id="passwordError"></p>
+            </div>
+
+            <div class="field">
+              <label for="confirmPassword">Confirm password</label>
+              <div class="input-icon">
+                <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Confirm your password" autocomplete="new-password" />
+                <button type="button" class="eye" data-target="confirmPassword" aria-label="Show password">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M1.5 12S5 5.5 12 5.5 22.5 12 22.5 12 19 18.5 12 18.5 1.5 12 1.5 12z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </button>
+              </div>
+              <p class="error" id="confirmPasswordError"></p>
+            </div>
+
+            <!-- Live password requirements -->
+            <section class="requirements" aria-live="polite">
+              <p class="req-title">Password must contain:</p>
+              <ul>
+                <li data-rule="length"><span class="tick">✓</span> At least 8 characters</li>
+                <li data-rule="upper"><span class="tick">✓</span> One uppercase letter</li>
+                <li data-rule="lower"><span class="tick">✓</span> One lowercase letter</li>
+                <li data-rule="number"><span class="tick">✓</span> One number or special character</li>
+              </ul>
+            </section>
+
+            <div class="field terms">
+              <label class="check">
+                <input id="terms" name="terms" type="checkbox" />
+                <span>
+                  I agree to the <a href="#">Terms of Service</a> and
+                  <a href="#">Privacy Policy</a>.
+                </span>
+              </label>
+              <p class="error" id="termsError"></p>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+              <span class="spinner" aria-hidden="true"></span>
+              <span class="btn-label">Create account</span>
+            </button>
+
+            <!-- Success message -->
+            <p class="success" id="successMsg" role="status">Account created successfully!</p>
+          </form>
+
+          <p class="bottom-text">
+            Already have an account? <a href="login.html">Sign in</a>
+          </p>
+        </div>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="supabase-client.js"></script>
+    <script src="signup.js"></script>
+  </body>
+</html>

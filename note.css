@@ -1,0 +1,151 @@
+/* LeToG – note details page */
+
+.note-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.note-head h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.note-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.author-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.pdf-preview {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.pdf-page {
+  background: #fdfdfd;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 26px;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  color: #1f2937;
+  min-height: 320px;
+  margin-bottom: 14px;
+}
+
+.pdf-page h3 {
+  font-family: inherit;
+  text-decoration: underline;
+}
+
+.pdf-page pre {
+  margin: 6px 0 14px;
+  white-space: pre-wrap;
+}
+
+.pdf-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--secondary);
+}
+
+.detail-buttons {
+  display: flex;
+  gap: 12px;
+  margin: 18px 0 26px;
+  flex-wrap: wrap;
+}
+
+.tabs {
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 10px 14px;
+  font: inherit;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--secondary);
+  cursor: pointer;
+}
+
+.tab[aria-selected="true"] {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.tab-panel[hidden] {
+  display: none;
+}
+
+.review {
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+
+.review:last-child {
+  border-bottom: 0;
+}
+
+.stars {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.star-btn {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--border);
+  padding: 0 2px;
+  line-height: 1;
+}
+
+.star-btn.on {
+  color: var(--warning);
+}
+
+.comment {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.note-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 24px;
+  align-items: start;
+}
+
+.side-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+}

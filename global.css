@@ -1,0 +1,1007 @@
+/* ==========================================================================
+   LeToG – global design system
+   Plain CSS3. Sections:
+   1. Tokens  2. Base  3. Layout helpers  4. Buttons  5. Forms
+   6. Navbar  7. Cards / tags / badges  8. Footer  9. Mobile nav
+   ========================================================================== */
+
+/* 1. Tokens -------------------------------------------------------------- */
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --text: #111827;
+  --secondary: #64748b;
+  --background: #f8fafc;
+  --white: #ffffff;
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --border: #e2e8f0;
+  --light-blue: #eff6ff;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgba(17, 24, 39, 0.06);
+  --shadow-md: 0 4px 14px rgba(17, 24, 39, 0.08);
+  --nav-height: 64px;
+}
+
+/* 2. Base ---------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 8px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 26px;
+}
+
+h3 {
+  font-size: 19px;
+}
+
+p {
+  margin: 0 0 12px;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.45);
+  outline-offset: 2px;
+}
+
+.text-blue {
+  color: var(--primary);
+}
+
+.muted {
+  color: var(--secondary);
+}
+
+.small {
+  font-size: 13px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* 3. Layout helpers ------------------------------------------------------ */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.page-body {
+  padding: 32px 0 64px;
+}
+
+.section {
+  margin-bottom: 44px;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.section-head h2 {
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+}
+
+/* 4. Buttons ------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font: inherit;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.btn-text {
+  background: none;
+  color: var(--primary);
+  min-height: 36px;
+  padding: 6px 8px;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-sm {
+  min-height: 36px;
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+.btn[aria-pressed="true"],
+.btn.is-active {
+  background: var(--light-blue);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* 5. Forms --------------------------------------------------------------- */
+.field {
+  margin-bottom: 16px;
+}
+
+.field label,
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.input,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+select,
+textarea {
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+}
+
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.check input {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  margin-top: 2px;
+  accent-color: var(--primary);
+}
+
+.error-text {
+  color: var(--error);
+  font-size: 13px;
+  margin: 6px 0 0;
+  min-height: 18px;
+}
+
+.alert {
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.alert-success {
+  background: #f0fdf4;
+  color: #14532d;
+  border: 1px solid #bbf7d0;
+}
+
+.alert-error {
+  background: #fef2f2;
+  color: #7f1d1d;
+  border: 1px solid #fecaca;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-top-color: var(--white);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 6. Navbar -------------------------------------------------------------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: var(--nav-height);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  font-weight: 800;
+  color: var(--text);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+
+/* LeToG text-only wordmark inspired by the supplied logo reference */
+.brand-wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 31px;
+  font-weight: 900;
+  letter-spacing: -1.8px;
+  line-height: 1;
+  white-space: nowrap;
+}
+.brand-navy { color: #123b70; }
+.brand-teal { color: #078f91; }
+.navbar .brand-wordmark { font-size: 31px; }
+.footer .brand-wordmark { font-size: 29px; }
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.brand-mark svg, .logo-mark svg { width: 23px; height: 23px; display: block; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-width: 0;
+}
+
+.nav-links a {
+  color: var(--secondary);
+  font-size: 15px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--secondary);
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.icon-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--light-blue);
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.avatar-lg {
+  width: 76px;
+  height: 76px;
+  font-size: 24px;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  width: 240px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 10px;
+  display: none;
+}
+
+.dropdown-panel.open {
+  display: block;
+}
+
+.dropdown-panel a,
+.dropdown-panel p {
+  display: block;
+  padding: 8px 10px;
+  font-size: 14px;
+  color: var(--text);
+  border-radius: var(--radius);
+  margin: 0;
+}
+
+.dropdown-panel a:hover {
+  background: var(--light-blue);
+  text-decoration: none;
+}
+
+/* Mobile menu (hidden on desktop) */
+.nav-toggle {
+  display: none;
+}
+
+.mobile-menu {
+  display: none;
+  border-top: 1px solid var(--border);
+  padding: 12px 20px 18px;
+}
+
+.mobile-menu.open {
+  display: block;
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 10px 0;
+  color: var(--text);
+}
+
+/* 7. Cards, tags, meta --------------------------------------------------- */
+.note-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.note-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.note-card .file-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: var(--error);
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.note-card .file-icon.doc {
+  background: var(--light-blue);
+  color: var(--primary);
+}
+
+.note-card .file-icon.ppt {
+  background: #fff7ed;
+  color: var(--warning);
+}
+
+.note-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+
+.note-title:hover {
+  color: var(--primary);
+}
+
+.note-desc {
+  color: var(--secondary);
+  font-size: 14px;
+  margin: 0;
+}
+
+.note-author {
+  font-size: 13px;
+  color: var(--secondary);
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--light-blue);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.tag-muted {
+  background: #f1f5f9;
+  color: var(--secondary);
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #f0fdf4;
+  color: var(--success);
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  color: var(--secondary);
+  margin-top: auto;
+}
+
+.meta-row .star {
+  color: var(--warning);
+}
+
+.bookmark-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--secondary);
+  cursor: pointer;
+}
+
+.bookmark-btn[aria-pressed="true"] {
+  background: var(--light-blue);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.bookmark-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.category-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 14px;
+  text-align: center;
+  color: var(--text);
+  display: block;
+  box-shadow: var(--shadow-sm);
+}
+
+.category-card:hover {
+  border-color: var(--primary);
+  text-decoration: none;
+}
+
+.category-card .cat-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 10px;
+  border-radius: 10px;
+  background: var(--light-blue);
+  color: var(--primary);
+}
+
+.category-card strong {
+  display: block;
+  font-size: 15px;
+}
+
+.category-card span {
+  font-size: 13px;
+  color: var(--secondary);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 56px 20px;
+  background: var(--white);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+}
+
+/* 8. Footer -------------------------------------------------------------- */
+.footer {
+  background: #0f172a;
+  color: #cbd5e1;
+  padding: 48px 0 24px;
+  margin-top: 40px;
+}
+
+.footer h4 {
+  color: var(--white);
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.footer a {
+  color: #cbd5e1;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.footer a:hover {
+  color: var(--white);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 32px;
+}
+
+.footer-grid li {
+  margin-bottom: 8px;
+}
+
+.footer .brand,
+.footer .brand:hover {
+  color: var(--white);
+}
+
+.footer-about {
+  font-size: 14px;
+  color: #94a3b8;
+  max-width: 260px;
+  margin-top: 12px;
+}
+
+.socials {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.socials a {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.socials svg {
+  width: 16px;
+  height: 16px;
+}
+
+.footer-bottom {
+  margin-top: 32px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 13px;
+  color: #94a3b8;
+  text-align: center;
+}
+
+/* 9. Mobile bottom navigation ------------------------------------------- */
+.bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding: 6px 4px;
+}
+
+.bottom-nav ul {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.bottom-nav a {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: 6px 0;
+  font-size: 11px;
+  color: var(--secondary);
+  font-weight: 500;
+}
+
+.bottom-nav a:hover,
+.bottom-nav a.active {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.bottom-nav svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Toast ------------------------------------------------------------------ */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  background: var(--text);
+  color: var(--white);
+  padding: 12px 18px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  z-index: 60;
+  box-shadow: var(--shadow-md);
+}
+
+
+/* LeToG global dark theme */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --text: #e5e7eb;
+  --secondary: #a7b2c4;
+  --background: #0b1220;
+  --white: #111c2e;
+  --border: #29364a;
+  --light-blue: #172b4d;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.25);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.3);
+}
+html[data-theme="dark"] body { background: var(--background); color: var(--text); }
+html[data-theme="dark"] .navbar,
+html[data-theme="dark"] .footer,
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .note-card,
+html[data-theme="dark"] .settings-card,
+html[data-theme="dark"] .settings-nav,
+html[data-theme="dark"] .dropdown-panel,
+html[data-theme="dark"] .mobile-menu,
+html[data-theme="dark"] .search-box,
+html[data-theme="dark"] .filter-panel,
+html[data-theme="dark"] .upload-card,
+html[data-theme="dark"] .profile-card,
+html[data-theme="dark"] .stat-card,
+html[data-theme="dark"] .category-card,
+html[data-theme="dark"] .user-card,
+html[data-theme="dark"] .note-detail-card,
+html[data-theme="dark"] .empty-state { background-color: #111c2e; color: var(--text); border-color: var(--border); }
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea { background-color: #0b1220; color: var(--text); border-color: var(--border); }
+html[data-theme="dark"] .btn-secondary,
+html[data-theme="dark"] .icon-btn { background-color: #172338; color: var(--text); border-color: var(--border); }
+html[data-theme="dark"] .hero,
+html[data-theme="dark"] .hero-section,
+html[data-theme="dark"] .page-body { color: var(--text); }
+html[data-theme="dark"] .muted { color: #a7b2c4; }
+html[data-theme="dark"] .brand { color: var(--text); }
+html[data-theme="dark"] .section,
+html[data-theme="dark"] .side-card,
+html[data-theme="dark"] .about-panel,
+html[data-theme="dark"] .tab-panel,
+html[data-theme="dark"] .preview-box,
+html[data-theme="dark"] .step-panel,
+html[data-theme="dark"] .profile-header,
+html[data-theme="dark"] .profile-tabs,
+html[data-theme="dark"] .info-hero,
+html[data-theme="dark"] .note-layout,
+html[data-theme="dark"] .form-wrap,
+html[data-theme="dark"] .interest-wrap,
+html[data-theme="dark"] .upload-layout,
+html[data-theme="dark"] .sort-wrap { background-color: #111c2e; color: var(--text); border-color: var(--border); }
+html[data-theme="dark"] hr { border-color: var(--border); }
+
+/* Navigation search and icon links */
+.nav-links a{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}.nav-links a svg,.mobile-menu a svg{width:17px;height:17px;flex-shrink:0}.nav-search{display:flex;align-items:center;gap:7px;min-width:190px;max-width:340px;flex:1;border:1px solid var(--border);border-radius:9px;background:var(--background);padding:4px 5px 4px 10px}.nav-search>span{display:flex;color:var(--secondary)}.nav-search svg{width:18px;height:18px}.nav-search input{min-width:0;width:100%;min-height:32px;padding:4px 2px;border:0;outline:0;box-shadow:none;background:transparent;font:inherit;font-size:12px}.nav-search input:focus{box-shadow:none}.nav-search button{border:0;border-radius:6px;background:var(--primary);color:#fff;padding:7px 9px;font:inherit;font-size:12px;cursor:pointer}.nav-upload{white-space:nowrap}.dropdown-panel a svg{width:16px;height:16px;vertical-align:middle;margin-right:5px}.mobile-nav-search{max-width:none;margin:8px 0}.mobile-menu a{display:flex;align-items:center;gap:8px}
+@media(max-width:1100px){.navbar-inner{gap:12px}.nav-links{gap:12px}.nav-search{min-width:160px}.nav-search input{font-size:11px}.nav-upload span{display:none}}
+@media(max-width:850px){.navbar-inner>.nav-links{display:none}.navbar-inner>.nav-search{display:none}.mobile-menu .nav-search{display:flex}.nav-right{gap:7px}.mobile-menu a svg{width:18px;height:18px}}
+@media(min-width:851px){.mobile-nav-search{display:none}}
+
+/* Follow, public member profiles and direct messages */
+.post-author,.home-social-author{font-weight:600;color:var(--text)}
+.post-owner-actions{display:flex;gap:8px;flex-wrap:wrap}
+.post-owner-actions a{display:inline-flex;align-items:center}
+.member-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.message-layout{max-width:850px;margin:0 auto}
+.message-list{display:grid;gap:12px;margin:18px 0}
+.message-item{padding:12px 14px;background:var(--white);border:1px solid var(--border);border-radius:10px}
+.message-item.mine{margin-left:12%;background:var(--light-blue)}
+.message-meta{font-size:12px;color:var(--secondary);margin-bottom:5px}
+.member-posts{display:grid;gap:16px}
+@media(max-width:700px){.post-owner-actions{width:100%}.message-item.mine{margin-left:4%}}
+
+/* Click the uploader's name or avatar to open their profile. */
+.uploader-profile-link { color: inherit; text-decoration: none; }
+.uploader-profile-link:hover { text-decoration: underline; }
+.uploader-profile-link:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+.profile-panel[hidden] { display: none !important; }
+
+/* Private one-to-one message attachments */
+.private-message-image{display:block;max-width:min(100%,360px);max-height:360px;object-fit:contain;border-radius:10px;margin-top:8px}
+.private-message-video{display:block;width:min(100%,420px);max-height:360px;border-radius:10px;margin-top:8px}
+.message-body{overflow-wrap:anywhere;white-space:normal;margin-top:5px}
+.message-item a{overflow-wrap:anywhere}
+
+/* Search-first private messages: no chat is shown until a member is selected. */
+.message-search-card{margin-bottom:16px}
+.message-chat-panel[hidden],.message-empty-hint[hidden]{display:none!important}
+.message-chat-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:12px}
+.message-chat-top h2{margin:0 0 4px;font-size:20px}
+.recipient-results{display:grid;gap:8px;margin-top:10px}
+.recipient-result{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--white);color:var(--text);cursor:pointer}
+.recipient-result:hover,.recipient-result:focus-visible{border-color:var(--primary);background:var(--light-blue)}
+.recipient-avatar{display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border-radius:50%;background:var(--light-blue);color:var(--primary);font-weight:700}
+.recipient-result-name{font-weight:600;flex:1}
+.recipient-result-action{font-size:12px;color:var(--secondary)}
+.message-empty-hint{padding:10px 2px}
+@media(max-width:600px){.message-chat-top{flex-direction:column}.recipient-result-action{display:none}}
+
+/* Private chat UI follows the main LeToG light/dark theme. */
+.message-chat-panel[hidden]{display:none!important}
+.message-chat-panel{position:fixed;inset:0;z-index:1000;background:var(--background);color:var(--text);display:flex;flex-direction:column;width:100%;height:100dvh;max-width:none;margin:0;padding:0;border:0;border-radius:0;box-shadow:none;overflow:hidden}
+.message-chat-top{display:flex;align-items:center;gap:12px;flex:0 0 auto;padding:calc(env(safe-area-inset-top,0px) + 12px) 16px 14px;background:var(--background);color:var(--text);border-bottom:1px solid var(--border);margin:0;min-height:76px}
+.chat-back{border:0;background:transparent;color:var(--text);font-size:38px;line-height:1;width:36px;height:42px;cursor:pointer;padding:0}
+.conversation-heading{display:flex;align-items:center;gap:12px;min-width:0;flex:1}
+.chat-person-profile-link{display:flex;align-items:center;gap:12px;min-width:0;color:inherit;text-decoration:none;border-radius:12px;padding:4px 8px 4px 0;transition:background .15s ease}
+.chat-person-profile-link:hover{background:var(--surface-2,rgba(127,127,127,.09))}
+.chat-person-profile-link:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.chat-person-profile-link .chat-person-name{cursor:pointer}
+.chat-person-avatar{display:grid;place-items:center;flex:0 0 44px;width:44px;height:44px;border-radius:50%;background:var(--primary);color:#fff;font-size:20px;font-weight:700}
+.chat-person-name{font-size:18px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chat-header-spacer{width:12px}
+.message-status{color:var(--secondary);font-size:12px;padding:0 16px;flex:0 0 auto}
+.message-list{display:flex;flex-direction:column;gap:10px;flex:1;min-height:0;overflow-y:auto;margin:0;padding:18px 14px 20px;background:var(--background)}
+.message-item{max-width:min(82%,520px);width:max-content;padding:10px 13px 6px;border:1px solid var(--border);border-radius:18px;background:var(--white);color:var(--text);overflow-wrap:anywhere}
+.message-item.mine{align-self:flex-end;margin:0;background:var(--light-blue);color:var(--text);border-color:transparent;border-bottom-right-radius:5px}
+.message-item.theirs{align-self:flex-start;margin:0;background:var(--white);color:var(--text);border-bottom-left-radius:5px}
+.message-meta{font-size:10px;color:var(--secondary);text-align:right;margin-top:5px}
+.message-body{margin:0;line-height:1.45;white-space:normal}
+.private-message-image{max-width:min(70vw,360px);max-height:45vh;border-radius:12px;margin-top:4px}
+.private-message-video{width:min(70vw,360px);max-height:45vh;border-radius:12px;margin-top:4px}
+.message-item a{color:var(--primary)}
+.chat-composer{display:flex;align-items:flex-end;gap:8px;flex:0 0 auto;margin:0;padding:10px 12px calc(env(safe-area-inset-bottom,0px) + 12px);background:var(--background);border-top:1px solid var(--border)}
+.chat-composer textarea{flex:1;min-width:0;min-height:46px;max-height:130px;resize:none;border:1px solid var(--border);border-radius:24px;background:var(--white);color:var(--text);padding:13px 14px;font:inherit;line-height:1.35;outline:none}
+.chat-composer textarea::placeholder{color:var(--secondary)}
+.chat-composer textarea:focus{box-shadow:0 0 0 2px var(--primary)}
+.composer-icon,.composer-send{display:grid;place-items:center;flex:0 0 42px;width:42px;height:46px;border:0;border-radius:50%;background:transparent;color:var(--text);font-size:27px;cursor:pointer}
+.composer-photo,.composer-send{background:var(--primary);color:#fff;font-size:22px}
+.composer-photo{font-size:25px}
+.composer-icon:disabled,.composer-send:disabled{opacity:.4;cursor:not-allowed}
+body.private-chat-open{overflow:hidden}
+body.private-chat-open #site-nav,body.private-chat-open #site-bottom-nav,body.private-chat-open main.message-layout>h1,body.private-chat-open main.message-layout>p,body.private-chat-open #recipientSearch,body.private-chat-open .message-search-card,body.private-chat-open #messageStatusEmpty{display:none!important}
+body.private-chat-open main.message-layout{max-width:none;width:100%;margin:0;padding:0}
+@media(min-width:700px){.message-chat-panel{inset:3vh auto 3vh 50%;transform:translateX(-50%);width:min(720px,96vw);height:94vh;border:1px solid #333;border-radius:18px}.chat-composer{padding-bottom:14px}}
+
+/* Recent one-to-one conversations and unified attachment button */
+.recent-conversations-card{margin-top:16px}
+.recent-conversations-card h2{font-size:18px;margin:0 0 12px}
+.conversation-list{display:grid;gap:8px}
+.conversation-result{min-width:0}
+.conversation-result-copy{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+.conversation-preview{font-size:12px;color:var(--secondary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.conversation-time{font-size:11px;color:var(--secondary);white-space:nowrap}
+.recipient-avatar{object-fit:cover;overflow:hidden}
+.chat-person-avatar{object-fit:cover;overflow:hidden}
+@media(max-width:600px){.conversation-time{display:none}}
+
+
+/* Right-side notifications column. It takes real layout space and never covers the page. */
+.app-page-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;align-items:start;width:100%;padding:0 22px;box-sizing:border-box}
+.app-page-layout.notifications-open{grid-template-columns:minmax(0,1fr) minmax(290px,350px)}
+.app-page-main{min-width:0}
+.app-page-main>.container{max-width:1200px;width:100%;box-sizing:border-box}
+.notification-drawer{position:sticky;top:12px;min-width:0;max-height:calc(100vh - 24px);height:calc(100vh - 24px);overflow:hidden;border:1px solid var(--border);border-radius:14px;background:var(--white);box-shadow:var(--shadow-md);color:var(--text);display:flex;flex-direction:column}
+.notification-drawer[hidden]{display:none}
+.notification-drawer-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 14px 10px;border-bottom:1px solid var(--border)}
+.notification-drawer-head h2{font-size:17px;margin:0}
+.notification-drawer-list{overflow-y:auto;padding:8px;min-height:0}
+.notification-drawer-list>.muted{padding:12px}
+.notification-item{display:flex;gap:10px;align-items:flex-start;padding:12px 9px;border-radius:10px;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border)}
+.notification-item:hover{background:var(--light-blue);text-decoration:none}
+.notification-item.unread{background:var(--light-blue)}
+.notification-avatar{width:38px;height:38px;flex:0 0 38px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:var(--background);font-weight:600}
+.notification-avatar img{width:100%;height:100%;object-fit:cover}
+.notification-copy{font-size:13px;line-height:1.5;min-width:0;overflow-wrap:anywhere}
+.notification-copy small{display:block;color:var(--secondary);font-size:11px;margin-top:4px}
+#bellBtn{position:relative}.notification-count{position:absolute;top:0;right:0;min-width:16px;height:16px;padding:0 3px;border-radius:999px;background:#dc2626;color:white;font-size:10px;line-height:16px;text-align:center}
+html[data-theme="dark"] .notification-drawer{background:var(--white);color:var(--text)}
+@media(max-width:800px){.app-page-layout.notifications-open{grid-template-columns:minmax(0,1fr)}.notification-drawer{position:static;height:60vh;max-height:60vh;grid-row:1}.app-page-layout{padding:0 10px;gap:12px}}

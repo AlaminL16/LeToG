@@ -1,0 +1,114 @@
+/* LeToG – search results page */
+
+.search-top {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 18px 0;
+}
+
+.search-bar {
+  position: relative;
+  max-width: 720px;
+}
+
+.search-bar input {
+  padding-left: 44px;
+}
+
+.search-bar svg {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--secondary);
+}
+
+.search-layout {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.filters {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  position: sticky;
+  top: calc(var(--nav-height) + 16px);
+}
+
+.filters-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.filter-group {
+  border-top: 1px solid var(--border);
+  padding: 14px 0 4px;
+}
+
+.filter-group h3 {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.filter-group .check {
+  margin-bottom: 10px;
+}
+
+.results-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.results-head h1 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.sort-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--secondary);
+}
+
+.sort-wrap select {
+  min-height: 42px;
+  width: auto;
+}
+
+.result-list {
+  display: grid;
+  gap: 14px;
+}
+
+.result-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: start;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.result-card .bookmark-btn {
+  position: static;
+}
+
+.live-search-layout{display:block;max-width:850px;margin:0 auto}.live-search-result{margin:0 0 14px}.live-search-result h3{margin:5px 0}.live-search-result p{margin:5px 0 10px;overflow-wrap:anywhere}.nav-search input{font-size:12px}

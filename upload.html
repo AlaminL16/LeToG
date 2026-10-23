@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Upload your notes | LeToG</title>
+    <meta name="description" content="Upload your study notes to LeToG in three simple steps and help thousands of learners." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="global.css" />
+    <link rel="stylesheet" href="upload.css" />
+    <link rel="stylesheet" href="responsive.css" />
+  </head>
+  <body data-page="upload">
+    <div id="site-nav"></div>
+
+    <main class="container page-body">
+      <h1>Upload your notes</h1>
+      <p class="muted">Share your knowledge with thousands of learners.</p>
+
+      <div class="upload-layout" style="margin-top: 22px">
+        <ul class="steps" id="stepList">
+          <li class="active" data-step="1"><span class="num">1</span> Upload File</li>
+          <li data-step="2"><span class="num">2</span> Add Details</li>
+          <li data-step="3"><span class="num">3</span> Preview</li>
+        </ul>
+
+        <div class="card">
+          <!-- Step 1 -->
+          <section class="step-panel" id="step1">
+            <h2>Choose your file</h2>
+            <div class="dropzone" id="dropzone">
+              <span class="cloud" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                  <path d="M12 16V8" /><path d="M8.5 11.5L12 8l3.5 3.5" />
+                  <path d="M20 16.5A3.5 3.5 0 0016.5 13h-.9A5 5 0 106 16" />
+                </svg>
+              </span>
+              <p><strong>Drag &amp; drop your file here</strong></p>
+              <p class="or">or</p>
+              <button class="btn btn-secondary" type="button" id="chooseBtn">Choose File</button>
+              <input class="sr-only" id="fileInput" type="file" accept=".pdf,.docx,.ppt,.pptx,.jpg,.jpeg,.png" />
+              <p class="muted small" style="margin-top: 14px">Supported: PDF, DOCX, PPT, JPG, PNG (Max 50MB)</p>
+            </div>
+            <div class="file-chip" id="fileChip"><strong id="fileName"></strong><span class="muted" id="fileSize"></span></div>
+            <p class="error-text" id="fileError"></p>
+            <div class="step-actions">
+              <span></span>
+              <button class="btn btn-primary" type="button" data-next="2">Next</button>
+            </div>
+          </section>
+
+          <!-- Step 2 -->
+          <section class="step-panel" id="step2" hidden>
+            <h2>Add details</h2>
+            <form class="form-grid" id="detailsForm" novalidate>
+              <div class="field full">
+                <label for="title">Title</label>
+                <input id="title" type="text" placeholder="Enter note title" />
+                <p class="error-text" id="titleError"></p>
+              </div>
+              <div class="field">
+                <label for="subject">Subject</label>
+                <select id="subject">
+                  <option value="">Select subject</option>
+                  <option>Python</option>
+                  <option>Programming</option>
+                  <option>Web Development</option>
+                  <option>Computer Science</option>
+                  <option>Mathematics</option>
+                  <option>Science</option>
+                  <option>Design</option>
+                  <option>Business</option>
+                </select>
+                <p class="error-text" id="subjectError"></p>
+              </div>
+              <div class="field">
+                <label for="difficulty">Difficulty</label>
+                <select id="difficulty">
+                  <option>Beginner</option>
+                  <option>Intermediate</option>
+                  <option>Advanced</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="description">Description</label>
+                <textarea id="description" placeholder="Write a short description about your notes..."></textarea>
+                <p class="error-text" id="descriptionError"></p>
+              </div>
+              <div class="field full">
+                <label for="tags">Tags</label>
+                <input id="tags" type="text" placeholder="Add tags (e.g. python, loops, class notes)" />
+              </div>
+            </form>
+            <div class="step-actions">
+              <button class="btn btn-secondary" type="button" data-back="1">Back</button>
+              <button class="btn btn-primary" type="button" data-next="3">Next</button>
+            </div>
+          </section>
+
+          <!-- Step 3 -->
+          <section class="step-panel" id="step3" hidden>
+            <h2>Preview</h2>
+            <div class="preview-box">
+              <dl>
+                <dt>File</dt><dd id="pvFile">—</dd>
+                <dt>Title</dt><dd id="pvTitle">—</dd>
+                <dt>Subject</dt><dd id="pvSubject">—</dd>
+                <dt>Difficulty</dt><dd id="pvDifficulty">—</dd>
+                <dt>Description</dt><dd id="pvDescription">—</dd>
+                <dt>Tags</dt><dd id="pvTags">—</dd>
+              </dl>
+            </div>
+            <div class="alert alert-success" id="publishSuccess" hidden>
+              Your study note has been saved successfully. <a href="home.html#studyNotesFeed">View it in the home feed</a>.
+            </div>
+            <div class="step-actions">
+              <button class="btn btn-secondary" type="button" data-back="2">Back</button>
+              <button class="btn btn-primary" type="button" id="publishBtn">
+                <span class="spinner" id="publishSpinner" hidden aria-hidden="true"></span>
+                <span>Publish Note</span>
+              </button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+<div id="site-bottom-nav"></div>
+
+    <script src="global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="supabase-client.js"></script>
+    <script src="upload.js"></script>
+  </body>
+</html>

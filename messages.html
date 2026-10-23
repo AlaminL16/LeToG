@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Messages | LeToG</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="global.css"><link rel="stylesheet" href="responsive.css"></head><body data-page="messages"><div id="site-nav"></div><main class="container page-body message-layout">
+<section class="card message-search-card">
+  <div class="field"><input id="recipientSearch" type="search" placeholder="Search users by name…" aria-label="Search users by name" autocomplete="off"><div id="recipientResults" class="recipient-results" aria-live="polite"></div></div>
+</section>
+<section class="recent-conversations-card"><div id="conversationList" class="conversation-list"></div></section>
+<section id="chatPanel" class="message-chat-panel" hidden>
+  <header class="message-chat-top">
+    <button id="closeChat" type="button" class="chat-back" aria-label="Back to search">‹</button>
+    <div id="conversationHeading" class="conversation-heading"></div>
+    <div class="chat-header-spacer" aria-hidden="true"></div>
+  </header>
+  <div id="messageStatus" class="message-status" role="status"></div>
+  <div id="messageList" class="message-list" aria-live="polite"></div>
+  <form id="messageForm" class="chat-composer">
+    <input id="messageFiles" type="file" accept="image/*,video/*,.pdf,.doc,.docx,.txt,.zip,.ppt,.pptx,.xls,.xlsx" hidden disabled>
+    <textarea id="messageText" maxlength="5000" placeholder="Message…" aria-label="Write a message" disabled rows="1"></textarea>
+    <button id="attachFile" class="composer-icon" type="button" aria-label="Attach a file" title="Attach a file" disabled>＋</button>
+    <button id="sendMessage" class="composer-send" type="submit" aria-label="Send message" title="Send message" disabled>➤</button>
+  </form>
+</section>
+<div id="messageStatusEmpty" class="muted message-empty-hint" hidden></div>
+</main><div id="site-bottom-nav"></div><script src="global.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="supabase-client.js"></script><script src="messages.js"></script></body></html>
