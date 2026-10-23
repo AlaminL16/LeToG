@@ -214,3 +214,15 @@
 .profile-edit-message { min-height: 1.4em; margin: 8px 0 14px; font-size: 14px; }
 .profile-edit-message.is-error { color: #dc2626; }
 .profile-edit-message.is-success { color: #16a34a; }
+
+/* Keep profile tabs readable on narrow phone screens */
+@media (max-width: 600px) {
+  .profile-tabs { display: flex; flex-wrap: nowrap; gap: 2px; overflow-x: auto; overflow-y: hidden; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: thin; padding-bottom: 2px; }
+  .profile-tabs a { flex: 0 0 auto; padding: 10px 11px; font-size: 13px; }
+  .profile-header { grid-template-columns: auto minmax(0, 1fr); gap: 12px; }
+  .profile-header > :last-child { grid-column: 1 / -1; }
+  .stat-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .stat { padding: 12px 8px; }
+  .stat strong { font-size: 19px; }
+  .stat span { font-size: 12px; }
+}

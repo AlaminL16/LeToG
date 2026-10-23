@@ -1005,3 +1005,14 @@ body.private-chat-open main.message-layout{max-width:none;width:100%;margin:0;pa
 #bellBtn{position:relative}.notification-count{position:absolute;top:0;right:0;min-width:16px;height:16px;padding:0 3px;border-radius:999px;background:#dc2626;color:white;font-size:10px;line-height:16px;text-align:center}
 html[data-theme="dark"] .notification-drawer{background:var(--white);color:var(--text)}
 @media(max-width:800px){.app-page-layout.notifications-open{grid-template-columns:minmax(0,1fr)}.notification-drawer{position:static;height:60vh;max-height:60vh;grid-row:1}.app-page-layout{padding:0 10px;gap:12px}}
+
+/* Mobile chat header: compact back button and profile identity */
+@media (max-width: 600px) {
+  .message-chat-top { gap: 8px; min-height: 60px; padding: calc(env(safe-area-inset-top, 0px) + 8px) 12px 9px; }
+  .chat-back { flex: 0 0 30px; width: 30px; height: 34px; font-size: 30px; line-height: 30px; }
+  .conversation-heading { flex: 1; min-width: 0; }
+  .chat-person-profile-link { gap: 8px; padding: 2px 5px 2px 0; max-width: 100%; }
+  .chat-person-avatar { flex: 0 0 34px; width: 34px; height: 34px; font-size: 16px; }
+  .chat-person-name { font-size: 15px; line-height: 1.25; max-width: calc(100vw - 105px); }
+  .chat-header-spacer { display: none; }
+}
