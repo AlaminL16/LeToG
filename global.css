@@ -933,7 +933,7 @@ html[data-theme="dark"] hr { border-color: var(--border); }
 .recipient-result-name{font-weight:600;flex:1}
 .recipient-result-action{font-size:12px;color:var(--secondary)}
 .message-empty-hint{padding:10px 2px}
-@media(max-width:600px){.message-chat-top{flex-direction:column}.recipient-result-action{display:none}}
+@media(max-width:600px){.message-chat-top{flex-direction:row;align-items:center;justify-content:flex-start}.recipient-result-action{display:none}}
 
 /* Private chat UI follows the main LeToG light/dark theme. */
 .message-chat-panel[hidden]{display:none!important}
