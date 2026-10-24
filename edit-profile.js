@@ -114,6 +114,12 @@ document.addEventListener("DOMContentLoaded", async function () {
       } else if (!avatarUrl) {
         avatarUrl = currentAvatar;
       }
+      // Re-read the saved photo before writing so a name/bio edit cannot erase it.
+      if (!avatarFile && !avatarUrl) {
+        var savedPhoto = await supabase.from("profiles").select("avatar_url").eq("id", currentUser.id).maybeSingle();
+        if (savedPhoto.error) throw savedPhoto.error;
+        avatarUrl = (savedPhoto.data && savedPhoto.data.avatar_url) || "";
+      }
       var profileValues = { display_name: displayName, bio: bio, avatar_url: avatarUrl || null, updated_at: new Date().toISOString() };
       // Update an existing row first. If the account has no profiles row yet, insert it.
       var update = await supabase.from("profiles").update(profileValues).eq("id", currentUser.id).select("id").maybeSingle();
