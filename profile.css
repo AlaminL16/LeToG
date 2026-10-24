@@ -226,3 +226,52 @@
   .stat strong { font-size: 19px; }
   .stat span { font-size: 12px; }
 }
+
+/* Profile overview and dedicated profile editor */
+.stat-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.stat-link { display: block; color: inherit; text-decoration: none; transition: border-color .15s ease, transform .15s ease; }
+.stat-link:hover { border-color: var(--primary); text-decoration: none; transform: translateY(-1px); }
+.profile-edit-actions { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-top: 18px; }
+.edit-profile-page { max-width: 820px; margin: 18px auto 30px; }
+.edit-profile-page h1 { margin: 0; font-size: 24px; }
+@media (max-width: 600px) {
+  .profile-header { grid-template-columns: auto minmax(0, 1fr); }
+  .profile-header > a { grid-column: 1 / -1; justify-self: start; }
+  .stat-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .profile-edit-actions { justify-content: stretch; }
+  .profile-edit-actions > * { flex: 1; text-align: center; }
+}
+
+
+/* Clickable circular profile photo uploader on Edit Profile */
+.profile-photo-picker-row { display: flex; align-items: center; gap: 16px; margin-top: 8px; }
+.profile-photo-picker { position: relative; width: 104px; height: 104px; flex: 0 0 104px; border: 2px solid var(--border); border-radius: 50%; overflow: hidden; padding: 0; background: var(--light-blue); color: var(--primary); display: flex; align-items: center; justify-content: center; cursor: pointer; font: inherit; font-size: 38px; font-weight: 700; }
+.profile-photo-picker:hover, .profile-photo-picker:focus-visible { border-color: var(--primary); outline: 2px solid var(--primary); outline-offset: 2px; }
+.profile-photo-picker img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.profile-photo-picker img[hidden] { display: none; }
+.profile-photo-picker #profilePhotoInitial[hidden] { display: none; }
+.profile-photo-camera { position: absolute; right: 0; bottom: 0; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--white); border: 1px solid var(--border); font-size: 15px; }
+.profile-photo-picker-copy { min-width: 0; }
+.profile-photo-picker-copy strong { display: block; margin-bottom: 4px; }
+.profile-photo-picker-copy p { margin: 0; font-size: 13px; }
+@media (max-width: 480px) { .profile-photo-picker { width: 84px; height: 84px; flex-basis: 84px; font-size: 32px; } .profile-photo-picker-row { gap: 12px; align-items: flex-start; } }
+
+/* Public member rows: show the same saved photo and name to other users. */
+.member-list-person{display:flex;align-items:center;gap:12px;padding:10px 12px;margin:8px 0;border:1px solid var(--border-color,rgba(120,130,150,.18));border-radius:12px;text-decoration:none;color:inherit;background:var(--card-bg,transparent)}
+.member-list-person:hover{border-color:var(--accent,#14b8a6)}
+.member-list-avatar{width:42px;height:42px;flex:0 0 42px;display:block;object-fit:cover;border-radius:50%}
+.member-list-avatar-fallback{display:flex;align-items:center;justify-content:center;background:var(--surface-secondary,#e8eef3);font-weight:600}
+.member-list-person span:last-child{font-weight:500}
+
+
+/* Keep one avatar only and place the member name beside it. */
+.profile-avatar-wrap { width: 76px; height: 76px; position: relative; }
+.profile-avatar-wrap > .avatar { width: 76px; height: 76px; }
+.profile-avatar-image[hidden], #profileAvatarFallback[hidden] { display: none !important; }
+.profile-name-block { min-width: 0; }
+.profile-header { grid-template-columns: 76px minmax(0, 1fr) auto; }
+@media (max-width: 600px) {
+  .profile-header { grid-template-columns: 64px minmax(0, 1fr); }
+  .profile-avatar-wrap, .profile-avatar-wrap > .avatar { width: 64px; height: 64px; }
+  .profile-header > a { grid-column: 1 / -1; justify-self: start; }
+}

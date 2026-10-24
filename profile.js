@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   var currentUser = null;
 
   function setMessage(text, kind) {
+    if (!message) return;
     message.textContent = text || "";
     message.className = "profile-edit-message" + (kind ? " is-" + kind : "");
   }
@@ -15,10 +16,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     var bio = (profile && profile.bio) || "";
     var avatar = (profile && profile.avatar_url) || "";
     document.getElementById("profileDisplayName").textContent = name;
-    document.getElementById("profileBioDisplay").textContent = bio || "Add a short introduction about yourself.";
-    document.getElementById("editDisplayName").value = name === "LeToG member" ? "" : name;
-    document.getElementById("editBio").value = bio;
-    document.getElementById("editAvatarUrl").value = avatar;
+    var bioDisplay = document.getElementById("profileBioDisplay");
+    bioDisplay.textContent = bio;
+    bioDisplay.hidden = !bio;
+    if (document.getElementById("editDisplayName")) document.getElementById("editDisplayName").value = name === "LeToG member" ? "" : name;
+    if (document.getElementById("editBio")) document.getElementById("editBio").value = bio;
+    if (document.getElementById("editAvatarUrl")) document.getElementById("editAvatarUrl").value = avatar;
     var image = document.getElementById("profileAvatar");
     var fallback = document.getElementById("profileAvatarFallback");
     if (avatar) {
@@ -37,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     currentUser = authResult.data && authResult.data.user;
     if (authResult.error || !currentUser) {
       setMessage("Please log in to view and edit your profile.", "error");
-      form.querySelectorAll("input, textarea, button").forEach(function (el) { el.disabled = true; });
+      if (form) form.querySelectorAll("input, textarea, button").forEach(function (el) { el.disabled = true; });
       showProfile(null, null);
     } else {
       var result = await supabase.from("profiles").select("id, display_name, bio, avatar_url").eq("id", currentUser.id).maybeSingle();
@@ -51,7 +54,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   } else {
     setMessage("Supabase is not configured. Restore your Project URL and Publishable key in supabase-config.js.", "error");
     showProfile(null, null);
-    form.querySelectorAll("input, textarea, button").forEach(function (el) { el.disabled = true; });
+    if (form) form.querySelectorAll("input, textarea, button").forEach(function (el) { el.disabled = true; });
   }
 
   async function loadFollowData() {
@@ -98,41 +101,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   });});
   showProfilePanel('__overview__');
 
-  form.addEventListener("submit", async function (event) {
-    event.preventDefault();
-    if (!supabase || !currentUser) { setMessage("Please log in first.", "error"); return; }
-    var displayName = document.getElementById("editDisplayName").value.trim();
-    var bio = document.getElementById("editBio").value.trim();
-    var avatarUrl = document.getElementById("editAvatarUrl").value.trim();
-    var avatarFile = document.getElementById("editAvatarFile").files[0];
-    if (!displayName) { setMessage("Please enter a display name.", "error"); return; }
-    if (avatarUrl && !/^https?:\/\//i.test(avatarUrl)) { setMessage("Profile picture URL must start with http:// or https://.", "error"); return; }
-    saveButton.disabled = true;
-    saveButton.textContent = "Saving…";
-    setMessage("Saving your profile…");
-    try {
-      if (avatarFile) {
-        if (!avatarFile.type.startsWith("image/")) throw new Error("Please choose an image file.");
-        if (avatarFile.size > 5 * 1024 * 1024) throw new Error("Profile pictures must be 5 MB or smaller.");
-        var ext = (avatarFile.name.split(".").pop() || "jpg").replace(/[^a-z0-9]/gi, "").toLowerCase() || "jpg";
-        var path = "profile-pictures/" + currentUser.id + "/" + Date.now() + "." + ext;
-        var uploaded = await supabase.storage.from("letog-media").upload(path, avatarFile, { upsert: true, contentType: avatarFile.type });
-        if (uploaded.error) throw uploaded.error;
-        var publicResult = supabase.storage.from("letog-media").getPublicUrl(path);
-        avatarUrl = publicResult.data.publicUrl;
-      }
-      var update = await supabase.from("profiles").upsert({ id: currentUser.id, display_name: displayName, bio: bio, avatar_url: avatarUrl || null, updated_at: new Date().toISOString() }, { onConflict: "id" }).select("id, display_name, bio, avatar_url").single();
-      if (update.error) throw update.error;
-      showProfile(update.data, currentUser);
-      document.getElementById("editAvatarFile").value = "";
-      setMessage("Profile saved successfully.", "success");
-    } catch (error) {
-      setMessage("Could not save profile: " + (error.message || "Please try again."), "error");
-    } finally {
-      saveButton.disabled = false;
-      saveButton.textContent = "Save profile";
-    }
-  });
+
 
   var bookmarkCount = document.querySelector("#bookmarkCount");
   if (bookmarkCount && typeof getBookmarks === "function") bookmarkCount.textContent = String(getBookmarks().length);

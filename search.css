@@ -112,3 +112,4 @@
 }
 
 .live-search-layout{display:block;max-width:850px;margin:0 auto}.live-search-result{margin:0 0 14px}.live-search-result h3{margin:5px 0}.live-search-result p{margin:5px 0 10px;overflow-wrap:anywhere}.nav-search input{font-size:12px}
+\n.search-member-heading{display:flex;align-items:center;gap:12px}.search-member-avatar{width:44px;height:44px;flex:0 0 44px;object-fit:cover;border-radius:50%;display:grid;place-items:center}.search-member-fallback{background:var(--light-blue);color:var(--primary);font-weight:700}.search-member-heading h3{margin:3px 0 0}\n

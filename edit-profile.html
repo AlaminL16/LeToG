@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Edit profile | LeToG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="global.css" />
+  <link rel="stylesheet" href="profile.css" />
+  <link rel="stylesheet" href="responsive.css" />
+</head>
+<body data-page="profile">
+  <div id="site-nav"></div>
+  <main class="container page-body">
+    <a class="btn-text" href="profile.html">← Back to my profile</a>
+    <section class="section card profile-edit-card edit-profile-page">
+      <div class="section-head"><div><h1>Edit profile</h1><p class="muted">Update your name, introduction, and profile picture.</p></div></div>
+      <form id="profileEditForm">
+        <div class="field"><label for="editDisplayName">Display name</label><input id="editDisplayName" name="display_name" type="text" maxlength="80" required placeholder="Your name" /></div>
+        <div class="field"><label for="editBio">About you</label><textarea id="editBio" name="bio" maxlength="500" rows="5" placeholder="Write a short introduction (optional)"></textarea><small class="muted">Up to 500 characters. This is optional.</small></div>
+        <div class="field profile-photo-field">
+          <label>Profile photo</label>
+          <div class="profile-photo-picker-row">
+            <button class="profile-photo-picker" id="profilePhotoPicker" type="button" aria-label="Choose a profile photo" title="Click to upload a profile photo">
+              <img id="profilePhotoPreview" alt="Profile photo preview" hidden />
+              <span id="profilePhotoInitial">?</span>
+              <span class="profile-photo-camera" aria-hidden="true">📷</span>
+            </button>
+            <div class="profile-photo-picker-copy"><strong id="profilePhotoName">Your profile photo</strong><p class="muted">Click the circle to upload a JPG, JPEG, or PNG image. The photo will be cropped automatically to fit the circle.</p></div>
+          </div>
+          <input id="editAvatarFile" name="avatar_file" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" hidden />
+        </div>
+        <p id="profileEditMessage" class="profile-edit-message" role="status" aria-live="polite"></p>
+        <div class="profile-edit-actions"><a class="btn btn-secondary" href="profile.html">Cancel</a><button class="btn btn-primary" id="saveProfileBtn" type="submit">Save profile</button></div>
+      </form>
+    </section>
+  </main>
+  <div id="site-bottom-nav"></div>
+  <script src="global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="supabase-client.js"></script>
+  <script src="edit-profile.js"></script>
+</body>
+</html>

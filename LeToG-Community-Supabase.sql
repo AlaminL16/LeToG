@@ -478,3 +478,21 @@ using (bucket_id = 'letog-private-messages' and ((storage.foldername(name))[1] =
 drop policy if exists "Senders delete their private chat attachments" on storage.objects;
 create policy "Senders delete their private chat attachments" on storage.objects for delete to authenticated
 using (bucket_id = 'letog-private-messages' and (storage.foldername(name))[1] = auth.uid()::text);
+
+
+-- Profile photo upload permissions (profile photos are stored in the existing public letog-media bucket).
+-- Safe to rerun. Users may upload/update only files inside their own profile-pictures/<user-id>/ folder.
+insert into storage.buckets (id, name, public)
+values ('letog-media', 'letog-media', true)
+on conflict (id) do update set public = true;
+
+drop policy if exists "Users upload own LeToG profile photos" on storage.objects;
+create policy "Users upload own LeToG profile photos" on storage.objects
+for insert to authenticated
+with check (bucket_id = 'letog-media' and (storage.foldername(name))[1] = 'profile-pictures' and (storage.foldername(name))[2] = auth.uid()::text);
+
+drop policy if exists "Users update own LeToG profile photos" on storage.objects;
+create policy "Users update own LeToG profile photos" on storage.objects
+for update to authenticated
+using (bucket_id = 'letog-media' and (storage.foldername(name))[1] = 'profile-pictures' and (storage.foldername(name))[2] = auth.uid()::text)
+with check (bucket_id = 'letog-media' and (storage.foldername(name))[1] = 'profile-pictures' and (storage.foldername(name))[2] = auth.uid()::text);

@@ -40,8 +40,8 @@
               <p><strong>Drag &amp; drop your file here</strong></p>
               <p class="or">or</p>
               <button class="btn btn-secondary" type="button" id="chooseBtn">Choose File</button>
-              <input class="sr-only" id="fileInput" type="file" accept=".pdf,.docx,.ppt,.pptx,.jpg,.jpeg,.png" />
-              <p class="muted small" style="margin-top: 14px">Supported: PDF, DOCX, PPT, JPG, PNG (Max 50MB)</p>
+              <input class="sr-only" id="fileInput" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png" />
+              <p class="muted small" style="margin-top: 14px">Supported: PDF, Word, PowerPoint, Excel, JPG, PNG (Max 50MB)</p>
             </div>
             <div class="file-chip" id="fileChip"><strong id="fileName"></strong><span class="muted" id="fileSize"></span></div>
             <p class="error-text" id="fileError"></p>
@@ -62,27 +62,10 @@
               </div>
               <div class="field">
                 <label for="subject">Subject</label>
-                <select id="subject">
-                  <option value="">Select subject</option>
-                  <option>Python</option>
-                  <option>Programming</option>
-                  <option>Web Development</option>
-                  <option>Computer Science</option>
-                  <option>Mathematics</option>
-                  <option>Science</option>
-                  <option>Design</option>
-                  <option>Business</option>
-                </select>
+                <input id="subject" type="text" placeholder="Enter subject name (e.g. Quantum Mechanics)" />
                 <p class="error-text" id="subjectError"></p>
               </div>
-              <div class="field">
-                <label for="difficulty">Difficulty</label>
-                <select id="difficulty">
-                  <option>Beginner</option>
-                  <option>Intermediate</option>
-                  <option>Advanced</option>
-                </select>
-              </div>
+
               <div class="field full">
                 <label for="description">Description</label>
                 <textarea id="description" placeholder="Write a short description about your notes..."></textarea>
@@ -90,7 +73,8 @@
               </div>
               <div class="field full">
                 <label for="tags">Tags</label>
-                <input id="tags" type="text" placeholder="Add tags (e.g. python, loops, class notes)" />
+                <input id="tags" type="text" placeholder="Enter tags separated by commas (e.g. quantum mechanics, Schrödinger equation)" />
+                <p class="muted small">Use words other students might search for. Notes with matching tags can appear in search results.</p>
               </div>
             </form>
             <div class="step-actions">
@@ -107,7 +91,6 @@
                 <dt>File</dt><dd id="pvFile">—</dd>
                 <dt>Title</dt><dd id="pvTitle">—</dd>
                 <dt>Subject</dt><dd id="pvSubject">—</dd>
-                <dt>Difficulty</dt><dd id="pvDifficulty">—</dd>
                 <dt>Description</dt><dd id="pvDescription">—</dd>
                 <dt>Tags</dt><dd id="pvTags">—</dd>
               </dl>

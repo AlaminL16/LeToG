@@ -172,11 +172,10 @@ function navbarHtml(active) {
     '<form class="nav-search" action="search.html" method="get" role="search"><span aria-hidden="true">' + ICONS.search + '</span><input type="search" name="q" placeholder="Search tags, categories, usernames…" aria-label="Search tags, categories, and usernames"><button type="submit" aria-label="Search">Search</button></form>' +
     '<div class="nav-right">' +
     '<button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5 8.5 8.5 0 1 0 20.5 15.5z"/></svg></button>' +
-    '<a class="btn btn-primary btn-sm nav-upload" href="upload.html">' + ICONS.upload + '<span>Upload</span></a>' +
     '<button class="icon-btn nav-toggle" type="button" id="navToggle" aria-label="Open menu" aria-expanded="false">' + ICONS.menu + '</button>' +
     '<div class="dropdown"><button class="icon-btn" type="button" id="bellBtn" aria-label="Notifications" aria-expanded="false" title="Notifications">' + ICONS.bell + '<span class="notification-count" id="notificationCount" hidden></span></button></div>' +
     '<div class="dropdown"><button class="avatar" type="button" id="avatarBtn" aria-label="Your account" aria-expanded="false">AA</button><div class="dropdown-panel" id="avatarPanel"><a href="profile.html">' + ICONS.user + ' My profile</a><a href="bookmarks.html">' + ICONS.bookmark + ' Bookmarks</a><a href="settings.html">Settings</a><a href="login.html">Log out</a></div></div>' +
-    '</div></div><div class="mobile-menu" id="mobileMenu"><a href="home.html">' + ICONS.home + ' Home</a><a href="community.html">' + ICONS.community + ' Community</a><a href="messages.html">' + ICONS.messages + ' Messages</a><a href="categories.html">' + ICONS.categories + ' Categories</a><a href="top-users.html">' + ICONS.users + ' Top Users</a><a href="about.html">' + ICONS.about + ' About</a><a href="upload.html">' + ICONS.upload + ' Upload notes</a><form class="nav-search mobile-nav-search" action="search.html" method="get"><input type="search" name="q" placeholder="Search tags, categories, usernames…" aria-label="Search"><button type="submit">Search</button></form><a href="bookmarks.html">' + ICONS.bookmark + ' Bookmarks</a><a href="settings.html">Settings</a></div></nav>'
+    '</div></div><div class="mobile-menu" id="mobileMenu"><a href="home.html">' + ICONS.home + ' Home</a><a href="community.html">' + ICONS.community + ' Community</a><a href="messages.html">' + ICONS.messages + ' Messages</a><a href="categories.html">' + ICONS.categories + ' Categories</a><a href="top-users.html">' + ICONS.users + ' Top Users</a><a href="about.html">' + ICONS.about + ' About</a><form class="nav-search mobile-nav-search" action="search.html" method="get"><input type="search" name="q" placeholder="Search tags, categories, usernames…" aria-label="Search"><button type="submit">Search</button></form><a href="bookmarks.html">' + ICONS.bookmark + ' Bookmarks</a><a href="settings.html">Settings</a></div></nav>'
   );
 }
 
@@ -233,7 +232,8 @@ function bottomNavHtml(active) {
   var links = items
     .map(function (item) {
       var cls = active === item[0].toLowerCase() ? ' class="active"' : "";
-      return "<li><a href=" + '"' + item[1] + '"' + cls + ">" + item[2] + "<span>" + item[0] + "</span></a></li>";
+      var icon = item[0] === "Profile" ? '<span class="bottom-profile-avatar" id="bottomProfileAvatar">' + item[2] + '</span>' : item[2];
+      return "<li><a href=" + '"' + item[1] + '"' + cls + ">" + icon + "<span>" + item[0] + "</span></a></li>";
     })
     .join("");
   return '<nav class="bottom-nav" aria-label="Mobile navigation"><ul>' + links + "</ul></nav>";
@@ -356,7 +356,12 @@ function mountChrome() {
 
   var navSlot = qs("#site-nav");
   if (navSlot) {
-    navSlot.innerHTML = navbarHtml(page);
+    if (page === "home") {
+      navSlot.innerHTML = navbarHtml(page);
+    } else {
+      navSlot.innerHTML = "";
+      navSlot.hidden = true;
+    }
   }
 
   var footerSlot = qs("#site-footer");
@@ -400,6 +405,28 @@ function mountChrome() {
     });
   }
   bindDropdown("avatarBtn", "avatarPanel");
+  // Use the signed-in user's saved profile photo in the shared navbar on every page.
+  (async function loadNavbarProfilePhoto() {
+    var button = qs("#avatarBtn"), bottomAvatar = qs("#bottomProfileAvatar"), db = window.leToGSupabase;
+    if ((!button && !bottomAvatar) || !db) return;
+    try {
+      var auth = await db.auth.getUser(), user = auth.data && auth.data.user;
+      if (!user) return;
+      var result = await db.from("profiles").select("display_name,avatar_url").eq("id", user.id).maybeSingle();
+      if (result.error || !result.data) return;
+      var profile = result.data;
+      var safeUrl = profile.avatar_url ? String(profile.avatar_url).replace(/[&<>"']/g, function(c){return ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;", "'":"&#39;"})[c];}) : "";
+      var initial = profile.display_name ? profile.display_name.trim().charAt(0).toUpperCase() : "U";
+      if (button) {
+        if (safeUrl) { button.innerHTML = '<img src="' + safeUrl + '" alt="Profile photo">'; button.classList.add("has-profile-photo"); }
+        else button.textContent = initial;
+      }
+      if (bottomAvatar) {
+        if (safeUrl) { bottomAvatar.innerHTML = '<img src="' + safeUrl + '" alt="Profile photo">'; bottomAvatar.classList.add("has-profile-photo"); }
+        else bottomAvatar.textContent = initial;
+      }
+    } catch (error) { console.warn("Could not load navbar profile photo", error); }
+  })();
   setupNotificationDrawer();
 
   document.addEventListener("click", function () {

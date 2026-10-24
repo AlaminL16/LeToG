@@ -463,6 +463,9 @@ textarea:focus {
   flex-shrink: 0;
 }
 
+.avatar.has-profile-photo { padding: 0; overflow: hidden; }
+.avatar.has-profile-photo img { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 50%; }
+
 .avatar-lg {
   width: 76px;
   height: 76px;
@@ -1016,3 +1019,12 @@ html[data-theme="dark"] .notification-drawer{background:var(--white);color:var(-
   .chat-person-name { font-size: 15px; line-height: 1.25; max-width: calc(100vw - 105px); }
   .chat-header-spacer { display: none; }
 }
+
+
+/* Mobile profile tab uses the signed-in user's real profile photo. */
+.bottom-profile-avatar{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;overflow:hidden;background:var(--light-blue);color:var(--primary);font-size:11px;font-weight:700;border:1px solid var(--border)}
+.bottom-profile-avatar img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
+.bottom-profile-avatar.has-profile-photo{background:transparent;border-color:transparent}
+/* The top navigation is intentionally mounted only on Home. */
+#site-nav[hidden]{display:none!important}
+@media(max-width:640px){body[data-page="home"] .navbar .nav-right>.dropdown:last-child{display:none!important}}

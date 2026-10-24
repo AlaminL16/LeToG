@@ -1,7 +1,7 @@
 /* LeToG – upload study notes to Supabase Storage and database. */
 
 document.addEventListener("DOMContentLoaded", function () {
-  var ALLOWED = ["pdf", "docx", "ppt", "pptx", "jpg", "jpeg", "png"];
+  var ALLOWED = ["pdf", "doc", "docx", "ppt", "pptx", "xls", "xlsx", "jpg", "jpeg", "png"];
   var MAX_MB = 50;
   var chosenFile = null;
   var client = window.leToGSupabase;
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function handleFile(file) {
     var extension = file.name.split(".").pop().toLowerCase();
     if (ALLOWED.indexOf(extension) === -1) {
-      fileError.textContent = "Unsupported file type. Use PDF, DOCX, PPT, JPG or PNG.";
+      fileError.textContent = "Unsupported file type. Use PDF, Word, PowerPoint, Excel, JPG or PNG.";
       return;
     }
     if (file.size > MAX_MB * 1024 * 1024) {
@@ -83,8 +83,8 @@ document.addEventListener("DOMContentLoaded", function () {
       qs("#titleError").textContent = "";
     }
 
-    if (!qs("#subject").value) {
-      qs("#subjectError").textContent = "Choose a subject.";
+    if (!qs("#subject").value.trim()) {
+      qs("#subjectError").textContent = "Enter a subject.";
       ok = false;
     } else {
       qs("#subjectError").textContent = "";
@@ -114,8 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         qs("#pvFile").textContent = chosenFile ? chosenFile.name : "—";
         qs("#pvTitle").textContent = qs("#title").value.trim();
-        qs("#pvSubject").textContent = qs("#subject").value;
-        qs("#pvDifficulty").textContent = qs("#difficulty").value;
+        qs("#pvSubject").textContent = qs("#subject").value.trim();
         qs("#pvDescription").textContent = qs("#description").value.trim();
         qs("#pvTags").textContent = qs("#tags").value.trim() || "—";
       }
@@ -156,12 +155,11 @@ document.addEventListener("DOMContentLoaded", function () {
       if (uploadResult.error) throw uploadResult.error;
 
       var publicResult = client.storage.from(BUCKET).getPublicUrl(filePath);
-      var tagList = qs("#tags").value.split(",").map(function (tag) { return tag.trim(); }).filter(Boolean);
+      var tagList = Array.from(new Set(qs("#tags").value.split(",").map(function (tag) { return tag.trim().toLowerCase(); }).filter(Boolean)));
       var note = {
         user_id: currentUser.id,
         title: qs("#title").value.trim(),
-        subject: qs("#subject").value,
-        difficulty: qs("#difficulty").value,
+        subject: qs("#subject").value.trim(),
         description: qs("#description").value.trim(),
         tags: tagList,
         file_url: publicResult.data.publicUrl,

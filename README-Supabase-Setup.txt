@@ -64,3 +64,10 @@ FOLLOW, PUBLIC PROFILES AND MESSAGES
 5. Messages are private to the sender and recipient under the database policies.
 
 FOLLOWERS AND NOTIFICATIONS: Run the updated Main/LeToG-Community-Supabase.sql in Supabase SQL Editor. Home study-note cards and Community posts include Follow controls; Profile shows follower/following lists and notifications for new followers. The recipient sees a follow notification in their Profile > Notifications section when they next visit.
+
+
+PROFILE PHOTO SAVE FIX
+- The Edit Profile page now uses the clickable photo circle only; the profile-photo URL field has been removed.
+- Run the updated LeToG-Community-Supabase.sql in Supabase SQL Editor to add storage upload/update policies for profile-pictures/<your-user-id> in the public letog-media bucket.
+- The profile save code updates the existing profiles row and inserts one if the account has no row, and displays specific upload errors.
+- This code has not been live-tested against your Supabase project.
