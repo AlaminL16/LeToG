@@ -47,3 +47,5 @@
 .community-room-author-details strong{overflow-wrap:anywhere}
 .community-room-author-details a{color:inherit;text-decoration:none}
 .community-room-author-details a:hover{text-decoration:underline}
+
+.community-directory-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}.community-create-page-card{max-width:680px;margin:0 auto}.community-create-page-card .community-create-form label{font-weight:600;margin-top:6px}@media(max-width:600px){.community-directory-top{align-items:flex-start;flex-direction:column}.community-directory-top .btn{width:100%;justify-content:center}}
